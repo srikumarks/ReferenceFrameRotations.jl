@@ -1,0 +1,41 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Description
+# ==============================================================================
+#
+#   Functions related to the conversion from quaternion to DCM.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+export quat_to_matrix
+
+"""
+    quat_to_matrix(q::Quaternion)
+
+Convert the quaternion `q` to a Direction Cosine Matrix (DCM).
+
+# Examples
+
+```jldoctest
+julia> q = Quaternion(cosd(45/2), sind(45/2), 0, 0);
+
+julia> quat_to_matrix(q)
+DCM{Float64}:
+ 1.0   0.0       0.0
+ 0.0   0.707107  0.707107
+ 0.0  -0.707107  0.707107
+```
+"""
+function quat_to_matrix(q::Quaternion)
+    # Auxiliary variables.
+    q0 = q.q0
+    q1 = q.q1
+    q2 = q.q2
+    q3 = q.q3
+
+    return mkrotmat(
+        q0^2 + q1^2 - q2^2 - q3^2,   2(q1 * q2 + q0 * q3)   ,   2(q1 * q3 - q0 * q2),
+          2(q1 * q2 - q0 * q3)   , q0^2 - q1^2 + q2^2 - q3^2,   2(q2 * q3 + q0 * q1),
+          2(q1 * q3 + q0 * q2)   ,   2(q2 * q3 - q0 * q1)   , q0^2 - q1^2 - q2^2 + q3^2
+    )'
+end
