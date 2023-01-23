@@ -210,6 +210,7 @@ const ReferenceFrameRotation = Union{
     DCM,
     EulerAngles,
     EulerAngleAxis,
-    Quaternion
+    Quaternion,
+    Matrix
 }
 

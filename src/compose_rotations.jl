@@ -83,6 +83,9 @@ Quaternion{Float64}:
 @inline compose_rotation(D::DCM) = D
 @inline compose_rotation(D::DCM, Ds::DCM...) = compose_rotation(Ds...) * D
 
+@inline compose_rotation(D::Matrix) = D
+@inline compose_rotation(D::Matrix, Ds::Matrix...) = compose_rotation(Ds...) * D
+
 @inline compose_rotation(ea::EulerAngleAxis) = ea
 @inline function compose_rotation(ea::EulerAngleAxis, eas::EulerAngleAxis...)
     return compose_rotation(eas...) * ea
