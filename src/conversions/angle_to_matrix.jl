@@ -54,74 +54,73 @@ function angle_to_matrix(θ₁::Number, θ₂::Number, θ₃::Number, rot_seq::S
                  c₂ * c₁,                c₂ * s₁,             -s₂ ,
             s₃ * s₂ * c₁ - c₃ * s₁, s₃ * s₂ * s₁ + c₃ * c₁, s₃ * c₂,
             c₃ * s₂ * c₁ + s₃ * s₁, c₃ * s₂ * s₁ - s₃ * c₁, c₃ * c₂
-        )'
+        )
     elseif rot_seq == :XYX
         return mkrotmat(
               c₂,               s₁ * s₂,               -c₁ * s₂,
             s₂ * s₃, -s₁ * c₂ * s₃ + c₁ * c₃, c₁ * c₂ * s₃ + s₁ * c₃,
             s₂ * c₃, -s₁ * c₃ * c₂ - c₁ * s₃, c₁ * c₃ * c₂ - s₁ * s₃
-        )'
+        )
     elseif rot_seq == :XYZ
         return mkrotmat(
              c₂ * c₃,  s₁ * s₂ * c₃ + c₁ * s₃, -c₁ * s₂ * c₃ + s₁ * s₃,
             -c₂ * s₃, -s₁ * s₂ * s₃ + c₁ * c₃,  c₁ * s₂ * s₃ + s₁ * c₃,
                 s₂,             -s₁ * c₂,                 c₁ * c₂
-        )'
+        )
     elseif rot_seq == :XZX
         return mkrotmat(
                c₂,               c₁ * s₂,                 s₁ * s₂,
             -s₂ * c₃,  c₁ * c₃ * c₂ - s₁ * s₃,  s₁ * c₃ * c₂ + c₁ * s₃,
              s₂ * s₃, -c₁ * c₂ * s₃ - s₁ * c₃, -s₁ * c₂ * s₃ + c₁ * c₃
-        )'
-
+        )
     elseif rot_seq == :XZY
         return mkrotmat(
             c₃ * c₂, c₁ * c₃ * s₂ + s₁ * s₃, s₁ * c₃ * s₂ - c₁ * s₃,
               -s₂,             c₁ * c₂,                s₁ * c₂,
             s₃ * c₂, c₁ * s₂ * s₃ - s₁ * c₃, s₁ * s₂ * s₃ + c₁ * c₃
-        )'
+        )
     elseif rot_seq == :YXY
         return mkrotmat(
             -s₁ * c₂ * s₃ + c₁ * c₃,  s₂ * s₃, -c₁ * c₂ * s₃ - s₁ * c₃,
                        s₁ * s₂,         c₂,              c₁ * s₂,
              s₁ * c₃ * c₂ + c₁ * s₃, -s₂ * c₃,  c₁ * c₃ * c₂ - s₁ * s₃
-        )'
+        )
     elseif rot_seq == :YXZ
         return mkrotmat(
              c₁ * c₃ + s₂ * s₁ * s₃, c₂ * s₃, -s₁ * c₃ + s₂ * c₁ * s₃,
             -c₁ * s₃ + s₂ * s₁ * c₃, c₂ * c₃,  s₁ * s₃ + s₂ * c₁ * c₃,
                   s₁ * c₂,             -s₂,         c₂ * c₁
-        )'
+        )
     elseif rot_seq == :YZX
         return mkrotmat(
                        c₁ * c₂,         s₂,              -s₁ * c₂,
             -c₃ * c₁ * s₂ + s₃ * s₁,  c₂ * c₃,  c₃ * s₁ * s₂ + s₃ * c₁,
              s₃ * c₁ * s₂ + c₃ * s₁, -s₃ * c₂, -s₃ * s₁ * s₂ + c₃ * c₁
-        )'
+        )
     elseif rot_seq == :YZY
         return mkrotmat(
             c₁ * c₃ * c₂ - s₁ * s₃, s₂ * c₃, -s₁ * c₃ * c₂ - c₁ * s₃,
                 -c₁ * s₂,             c₂,               s₁ * s₂,
             c₁ * c₂ * s₃ + s₁ * c₃, s₂ * s₃, -s₁ * c₂ * s₃ + c₁ * c₃
-        )'
+        )
     elseif rot_seq == :ZXY
         return mkrotmat(
             c₃ * c₁ - s₂ * s₃ * s₁, c₃ * s₁ + s₂ * s₃ * c₁, -s₃ * c₂,
                 -c₂ * s₁,                c₂ * c₁,              s₂,
             s₃ * c₁ + s₂ * c₃ * s₁, s₃ * s₁ - s₂ * c₃ * c₁,  c₂ * c₃
-        )'
+        )
     elseif rot_seq == :ZXZ
         return mkrotmat(
             -s₁ * c₂ * s₃ + c₁ * c₃, c₁ * c₂ * s₃ + s₁ * c₃, s₂ * s₃,
             -s₁ * c₃ * c₂ - c₁ * s₃, c₁ * c₃ * c₂ - s₁ * s₃, s₂ * c₃,
                        s₁ * s₂,               -c₁ * s₂,         c₂
-        )'
+        )
     elseif rot_seq == :ZYZ
         return mkrotmat(
              c₁ * c₃ * c₂ - s₁ * s₃,  s₁ * c₃ * c₂ + c₁ * s₃, -s₂ * c₃,
             -c₁ * c₂ * s₃ - s₁ * c₃, -s₁ * c₂ * s₃ + c₁ * c₃,  s₂ * s₃,
                        c₁ * s₂,                 s₁ * s₂,          c₂
-        )'
+        )
     else
         throw(ArgumentError("The rotation sequence :$rot_seq is not valid."))
     end

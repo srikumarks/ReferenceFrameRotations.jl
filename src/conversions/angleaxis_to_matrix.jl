@@ -62,7 +62,7 @@ Matrix{Float64}:
         cθ + v₁ * v₁ * aux,      v₁ * v₂ * aux + v₃ * sθ, v₁ * v₃ * aux - v₂ * sθ,
         v₁ * v₂ * aux - v₃ * sθ, cθ + v₂ * v₂ * aux,      v₂ * v₃ * aux + v₁ * sθ,
         v₁ * v₃ * aux + v₂ * sθ, v₂ * v₃ * aux - v₁ * sθ, cθ + v₃ * v₃ * aux
-    )'
+    )
 end
 
 @inline angleaxis_to_matrix(av::EulerAngleAxis) = angleaxis_to_matrix(av.a, av.v)
