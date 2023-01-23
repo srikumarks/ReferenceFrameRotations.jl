@@ -279,30 +279,30 @@ end
 #   _mod_atan(0.0, -0.0) = _mod_atan(-0.0, 0.0) = 0.0
 #
 # The signed zero can lead to problems when converting from Matrix to Euler angles.
-_mod_atan(y::T, x::T) where T<:Number = atan(y + T(0), x + T(0))
+#_mod_atan(y::T, x::T) where T<:Number = atan(y + T(0), x + T(0))
 
 # This modified function computes the `acos(x)` if `|x| <= 1` and computes
 # `acos( sign(x) )`  if `|x| > 1` to avoid numerical errors when converting Matrix
 # to  Euler Angles.
-function _mod_acos(x::T) where T<:Number
-    if x > 1
-        return float(T(0))
-    elseif x < -1
-        return float(T(π))
-    else
-        return acos(x)
-    end
-end
+#function _mod_acos(x::T) where T<:Number
+#    if x > 1
+#        return float(T(0))
+#    elseif x < -1
+#        return float(T(π))
+#    else
+#        return acos(x)
+#    end
+#end
 
 # This modified function computes the `asin(x)` if `|x| <= 1` and computes
 # `asin( sign(x) )`  if `|x| > 1` to avoid numerical errors when converting Matrix
 # to  Euler Angles.
-function _mod_asin(x::T) where T<:Number
-    if x > 1
-        return +float(T(π / 2))
-    elseif x < -1
-        return -float(T(π / 2))
-    else
-        return asin(x)
-    end
-end
+#function _mod_asin(x::T) where T<:Number
+#    if x > 1
+#        return +float(T(π / 2))
+#    elseif x < -1
+#        return -float(T(π / 2))
+#    else
+#        return asin(x)
+#    end
+#end
