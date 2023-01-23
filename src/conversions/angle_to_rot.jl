@@ -74,6 +74,10 @@ end
     return angle_to_quat(θ, rot_seq)
 end
 
+@inline function angle_to_rot(::Type{Matrix}, θ::Number, rot_seq::Symbol)
+    return angle_to_matrix(θ, rot_seq)
+end
+
 @inline function angle_to_rot(
     θ₁::Number,
     θ₂::Number,
@@ -98,6 +102,15 @@ end
     rot_seq::Symbol
 )
     return angle_to_quat(θ₁, θ₂, rot_seq)
+end
+
+@inline function angle_to_rot(
+    ::Type{Matrix},
+    θ₁::Number,
+    θ₂::Number,
+    rot_seq::Symbol
+)
+    return angle_to_matrix(θ₁, θ₂, rot_seq)
 end
 
 @inline function angle_to_rot(
@@ -129,12 +142,22 @@ end
     return angle_to_quat(θ₁, θ₂, θ₃, rot_seq)
 end
 
+@inline function angle_to_rot(
+    ::Type{Matrix},
+    θ₁::Number,
+    θ₂::Number,
+    θ₃::Number,
+    rot_seq::Symbol
+)
+    return angle_to_matrix(θ₁, θ₂, θ₃, rot_seq)
+end
+
 @inline function angle_to_rot(Θ::EulerAngles)
     return angle_to_rot(Θ.a1, Θ.a2, Θ.a3, Θ.rot_seq)
 end
 
 @inline function angle_to_rot(
-    T::Union{Type{DCM}, Type{Quaternion}},
+    T::Union{Type{DCM}, Type{Quaternion}, Type{Matrix}},
     Θ::EulerAngles
 )
     return angle_to_rot(T, Θ.a1, Θ.a2, Θ.a3, Θ.rot_seq)

@@ -69,3 +69,12 @@ end
 )
     return smallangle_to_quat(θx, θy, θz)
 end
+
+@inline function smallangle_to_rot(
+    ::Type{Matrix},
+    θx::Number,
+    θy::Number,
+    θz::Number
+)
+    return smallangle_to_matrix(θx, θy, θz)
+end
