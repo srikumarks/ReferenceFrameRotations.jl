@@ -48,7 +48,7 @@ Matrix{Float64}:
           1, +θz, -θy,
         -θz,   1, +θx,
         +θy, -θx,   1
-    )'
+    )
 
     if normalize
         return orthonormalize(D)
