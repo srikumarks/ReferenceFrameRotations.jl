@@ -69,6 +69,7 @@ Quaternion{Float64}:
 ```
 """
 @inline inv_rotation(D::DCM) = D'
+@inline inv_rotation(D::Matrix) = Matrix(D')
 @inline inv_rotation(ea::EulerAngleAxis) = inv(ea)
 @inline inv_rotation(Θ::EulerAngles) = inv(Θ)
 @inline inv_rotation(q::Quaternion) = conj(q)
